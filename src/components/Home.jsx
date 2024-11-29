@@ -7,7 +7,7 @@ function Home() {
     let [title, setTitle] = useState([])
     let [showAddMod,setAddMod] = useState(false)
     let [showEditMod,setEditMod] = useState(false)
-    const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const [clickedOneRecipe, setclickedOneRecipe] = useState(null);
 
     useEffect(()=>{
 
@@ -26,7 +26,7 @@ function Home() {
         .then(() => {
             // Refresh the list after deletion
             getallreceipe();
-            setSelectedRecipe(null);
+            setclickedOneRecipe(null);
         })
       }
 
@@ -43,25 +43,25 @@ function Home() {
                 <div className="container-receipe">
        <div className="main-receipe">
         <div className="head">
-            <div className="text">
-                <h5>Receipe's List</h5>
+            <div className="text" style={{marginLeft:'10px', marginBottom:'10px'}}>
+                <h5>Recipe's List</h5>
             </div>
-            <div className="icon">
-            <button onClick={()=>{setAddMod(true)}} ><i className="fa-solid fa-plus" ></i></button>
+            <div className="icon" style={{marginRight:'10px'}}>
+            <button style={{background:'white',height:'20px', fontSize:'10px', fontWeight:'bolder'}} onClick={()=>{setAddMod(true)}} ><i className="fa-solid fa-plus" /></button>
             </div>
         </div>
         {/* Showing the image and add Recipe if there is no data in json */}
         {title.length === 0 && (
-          <>
+          <div className='justify-item-center' style={{marginTop:'180px'}}>
             <div className="image-receipe">
               <img src="/file.png" alt="No Recipe Available" />
             </div>
-             <div className="d-flex justify-content-center">
+             <div className="d-flex justify-content-center mt-4">
              <button type="button" className="btn btn-primary" onClick={() => setAddMod(true)}>
                Add Recipe
              </button>
            </div>
-           </>
+           </div>
           )}
 
          
@@ -69,7 +69,7 @@ function Home() {
           {/* Display the list of recipe name form json */}
           <div className='naming d-block'>
             {title.map((recipe, index) => (
-              <button className= "btns"  key={index} onClick={() => setSelectedRecipe(recipe)}>{recipe.recipename}</button> 
+              <button className= "btns"  key={index} onClick={() => setclickedOneRecipe(recipe)}>{recipe.recipename}</button> 
             ))}
           </div>
         </div>
@@ -87,14 +87,14 @@ function Home() {
 
             <div className="detail-container">
                 {/* From there To */}
-                {selectedRecipe ? (
+                {clickedOneRecipe ? (
     <div className="detail-main">
       <div className="detail-header d-flex justify-content-between">     
         
-        <div className="detail-text">
+        <div className="detail-text" style={{marginBottom:'10px'}}>
           <h3>
             
-              {selectedRecipe.recipename}
+              {clickedOneRecipe.recipename}'s Recipe
             
              </h3>
         </div>
@@ -104,7 +104,7 @@ function Home() {
           {/* Edit button */}
           <button className='btn' onClick={()=>{setAddMod(true); setEditMod(true)}}> <i className="fa-solid fa-pen" /> </button>
            {/*Delete button  */}
-          <button className='btn' onClick={()=>handleDelete(selectedRecipe.id)}> <i className="fa-solid fa-trash" ></i> </button>
+          <button className='btn' onClick={()=>handleDelete(clickedOneRecipe.id)}> <i className="fa-solid fa-trash" ></i> </button>
           
        
           </div>        
@@ -115,12 +115,12 @@ function Home() {
         <div className="detail-ingredients">
           <h5>Ingredients</h5>
           <ul>
-          {Array.isArray(selectedRecipe.ingredients) ? (
-    selectedRecipe.ingredients.map((ing, index) => (
+          {Array.isArray(clickedOneRecipe.ingredients) ? (
+    clickedOneRecipe.ingredients.map((ing, index) => (
       <li key={index}>{ing}</li>
     ))
   ) : (
-    selectedRecipe.ingredients.split('*').map((ing, index) => (
+    clickedOneRecipe.ingredients.split('*').map((ing, index) => (
       <li key={index}>{ing.trim()}</li> 
     ))
   )}           
@@ -132,12 +132,12 @@ function Home() {
         <div className="deatil-description">
         <h5>Description</h5>
         <ul>
-        {Array.isArray(selectedRecipe.description) ? (
-    selectedRecipe.description.map((des, index) => (
+        {Array.isArray(clickedOneRecipe.description) ? (
+    clickedOneRecipe.description.map((des, index) => (
       <li key={index}>{des}</li>
     ))
   ) : (
-    selectedRecipe.description.split('*').map((des, index) => (
+    clickedOneRecipe.description.split('*').map((des, index) => (
       <li key={index}>{des.trim()}</li> 
     ))
   )}                 
@@ -153,8 +153,8 @@ function Home() {
         <div className="detail-image">
                 <img src="/food.png" alt="" />
             </div>
-          <div className="text text-center">
-            Select a receipe for details
+          <div className="text text-center fs-5 mt-3 ">
+            Select a receipe for details!
           </div>
        </div>
     
@@ -170,7 +170,7 @@ function Home() {
     showmodal={showAddMod}    
     onClose={() =>{ setAddMod(false); setEditMod(false); } }
     getallreceipe={getallreceipe}
-    getedit = {showEditMod ? selectedRecipe : null}
+    getedit = {showEditMod ? clickedOneRecipe : null}
     
      />
       

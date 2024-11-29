@@ -1,15 +1,17 @@
 .home-container{
     display: flex;
+    flex-direction: row;
     width: 100%;
-    height: 100vh;
+    margin-top: 50px;
 }
 .home-container .main{
     display: flex;
-    width: 80%;
+    width: 70%;
     height: 600px;
     justify-content: center;
     align-items: center;
     margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
 }
 
@@ -33,7 +35,7 @@
 /* Recipe */
 
 .home-container .main .recipe-container{
-    width: 30%;
+    width: 40%;
     height: 100%;  
 
 }
@@ -46,31 +48,37 @@
 .container-receipe{
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(166, 124, 124);
+    /* border: 1px 0px 1px 0px solid rgb(166, 124, 124); */
+    border-left: 1px solid rgb(160, 160, 160);
+    border-right: 1px solid rgb(160, 160, 160);
     align-items: center;
 }
 .container-receipe .main-receipe .head{
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    border-bottom: 1px solid rgb(156, 139, 139);
+    border-bottom: 1px solid rgb(160, 160, 160);
     
 }
 
 .container-receipe .main-receipe .image-receipe{
-    display: flex;
+    /* display: flex;
     width: 100%;
     height: auto;
     margin: auto;
-    margin-top: 80px;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    display: flex;          
+  justify-content: center; 
+  align-items: center;
+  height: 100%;
 
 }
-
 .container-receipe .main-receipe .image-receipe img{
-    width: 200px;
-    height: 200px;
+  max-width: 50%;
+  height: 100%;
+  margin: auto;
+
 }
 
 .container-receipe .btns-receipe{
@@ -80,17 +88,20 @@
 }
 
 
+
 /* Detail */
 .detail-container{
     width: 100%;
     height: 100%;
-    /* margin-left: 10px; */
-    border: 1px solid rgb(166, 124, 124);
+    border-right: 1px solid rgb(166,124,124);
+
 
 }
 .detail-container .detail-main {
     width: 100%;
     height: 100%;
+    justify-content: center;
+    align-items: center;
   }
 .detail-container .detail-main .detail-header {
     border-bottom:1px solid rgb(166, 124, 124); ;
@@ -111,12 +122,14 @@ margin-top: 15px;
   }
   
   .container-detail .detail-image {
+    
+    width: 100%;
     display: flex;
+    margin: auto;
+    margin-top: 180px;
     justify-content: center; 
     align-items: center; 
-    width: 100%;
-    margin-top: 100px;
-    /* height: 100%;  */
+    justify-items: center;
   }
   
   .container-detail .detail-image img {
@@ -137,3 +150,144 @@ margin-top: 15px;
   
 
 
+/* Responsive for mobile devices */
+
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    margin-top: 20px;
+    height: auto;
+  }
+
+  .home-container .main {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .home-container .main .recipe-container,
+  .home-container .main .detail-container {
+    width: 100%;
+    height: auto;
+    border: none;
+    margin-bottom: 20px;  /* Add some space between containers */
+  }
+
+  .container-receipe .main-receipe .head {
+    align-items: center;
+    text-align: center;
+  }
+
+  .container-receipe .main-receipe .head .text,
+  .container-receipe .main-receipe .head .icon {
+    margin: 5px 0;
+  }
+
+  /* Adjust button sizes */
+  .btns {
+    font-size: 14px;
+  }
+
+  /* Center images */
+  .container-detail .detail-image img {
+    width: 70%;  /* Adjust image size */
+  }
+
+  /* Adjust text */
+  .detail-container .detail-main .detail-header h3 {
+    font-size: 18px;
+  }
+
+  .detail-container .detail-main .detail-body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce padding and font sizes */
+  .home-container .main .recipe-container .head h5 {
+    font-size: 16px;
+  }
+
+  .btns {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .container-detail .detail-image img {
+    width: 80%;  /* Smaller image on very small screens */
+  }
+}
+
+
+/* Responsive modal */
+
+
+.modal-content {
+  border-radius: 5px;  /* Maintain your rounded-0 class */
+}
+
+.container {
+  padding: 20px;  /* Default padding */
+}
+
+/* Form Inputs */
+.inputs {
+  display: flex;
+  flex-direction: row;  /* Default horizontal layout */
+  gap: 10px;  /* Add space between fields */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 90%;  /* Increase modal width for better utilization */
+    margin: 10px auto;  /* Center modal */
+  }
+
+  .container {
+    padding: 10px;  /* Reduce padding */
+  }
+
+  .inputs {
+    flex-direction: column;  /* Stack fields vertically */
+  }
+
+  .ingredients-recipe,
+  .description-recipe {
+    width: 100%;  /* Full width for both fields */
+    margin: 0;  /* Remove side margins */
+  }
+
+  .form-label {
+    font-size: 14px;  /* Adjust label size for smaller screens */
+  }
+
+  textarea,
+  input[type="text"] {
+    font-size: 14px;  /* Ensure input text is readable */
+  }
+
+  .modal-footer {
+    flex-direction: column;  /* Stack buttons vertically */
+    gap: 10px;  /* Add space between buttons */
+  }
+
+  .modal-footer button {
+    width: 100%;  /* Full-width buttons for easier access */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-dialog {
+    max-width: 95%;  /* Even wider modal on very small screens */
+  }
+
+  .modal-header .modal-title {
+    font-size: 16px;  /* Adjust title font size */
+  }
+
+  .form-control {
+    font-size: 12px;  /* Smaller font in form controls */
+  }
+}

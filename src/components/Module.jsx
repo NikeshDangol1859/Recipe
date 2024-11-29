@@ -13,6 +13,7 @@ function Module(props) {
   
         }
       )
+      let [error,seterror]=useState({})
 
     useEffect(() => {
         if (props.getedit) {
@@ -40,7 +41,23 @@ function Module(props) {
     }
 
     let saveData = () =>{
-        if (props.getedit) {            
+      let dataValidation = {}
+        if(!input_data.recipename){
+          dataValidation.recipename = "RecipeName is required"
+        }
+        if(!input_data.ingredients){
+          dataValidation.ingredients = "Ingredients is required"
+        }
+        if(!input_data.description){
+          dataValidation.description = "Description is required"
+        }
+
+        seterror (dataValidation)
+
+        if(Object.keys(dataValidation).length==0)
+          {
+
+        if (props.getedit == "") {            
             axios.put(`http://localhost:3030/recipe/${props.getedit.id}`, input_data)
               .then(() => {
                 props.getallreceipe(); 
@@ -56,6 +73,7 @@ function Module(props) {
               })
               .catch((error) => alert(error));
           }
+        }
       
     }
 
@@ -69,26 +87,33 @@ function Module(props) {
     <>
     <Modal show={showhide} size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      centered>
+      centered
+      className='rounded-0'
+      >
     <Modal.Header closeButton onClick={()=>{props.onClose()}}>  {/*onClick={()=>{props.getaddreceipe()}}*/}
           <Modal.Title id="contained-modal-title-vcenter">{props.getedit ? 'Edit Recipe' : 'Add Recipe'}</Modal.Title>
         </Modal.Header>      
 
         <Modal.Body>
-            <div className='container p-3'>
-                <label htmlFor="recipename" className="form-label">Recipe Name</label>
-                <input type="text" id="recipename" className="form-control" name='recipename' placeholder='Enter the recipe name' value={input_data.recipename} onChange={setData} autoComplete='off'/> 
+            <div className='container p-3 rounded-0'>
+                <label htmlFor="recipename" className="form-label">Recipe Name *</label>
+                <input type="text" id="recipename" className="form-control" name='recipename' placeholder='Enter the recipe name'  value={input_data.recipename} onChange={setData} autoComplete='off' />
+                {error.recipename && <span className='text-danger'>{error.recipename} </span>} <br></br> 
                 <div className="inputs">
                     <div className="ingredients-recipe ">
-                        <label htmlFor="ingredients" className="form-label">Ingredients</label>
+                        <label htmlFor="ingredients" className="form-label">Receipe Ingredients *</label>
                         <textarea type="text" id="ingredients" className="form-control" name='ingredients' rows="6"
-                        placeholder='Enter each itigredients separated by asterik for ex. 1 table spoon sugar 2 table spoon honey' value={input_data.ingredients} onChange={setData}/>
+                        placeholder='Enter each itigredients separated by asterik for ex. 1 table spoon sugar 2 table spoon honey'  value={input_data.ingredients} onChange={setData}/>
+                {error.ingredients && <span className='text-danger'>{error.ingredients} </span>} <br></br> 
+
 
                     </div>
                     <div className="description-recipe">
-                        <label htmlFor="description" className="form-label">Description</label>
+                        <label htmlFor="description" className="form-label">Receipe Description *</label>
                         <textarea className="form-control" id="description" name='description' rows="6"
-                        placeholder='Enter each description separated by astenk For ex. Boil water for 5mins. Add soger.' value={input_data.description} onChange={setData}/>
+                        placeholder='Enter each description separated by astenk For ex. Boil water for 5mins. Add soger.'  value={input_data.description} onChange={setData} />
+                {error.description && <span className='text-danger'>{error.description} </span>} <br></br> 
+
                     </div>
                 </div>
 
@@ -98,8 +123,8 @@ function Module(props) {
           
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={()=>{props.onClose()}}>
-            Close
+          <Button style={{border:'1px solid black'}} variant="Light" onClick={()=>{props.onClose()}}>
+            Cancel
           </Button>
           <Button variant="primary" onClick={saveData}>
           {props.getedit ? 'Edit Recipe' : 'Save Recipe'}
