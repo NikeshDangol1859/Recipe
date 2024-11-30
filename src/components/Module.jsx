@@ -13,7 +13,7 @@ function Module(props) {
   
         }
       )
-      let [error,seterror]=useState({})
+      
 
     useEffect(() => {
         if (props.getedit) {
@@ -33,7 +33,7 @@ function Module(props) {
 
     
 
-    
+      let [error,seterror]=useState({})
 
     let setData=(e)=>{ 
       setinpData({...input_data, [e.target.name]:e.target.value})
@@ -43,7 +43,7 @@ function Module(props) {
     let saveData = () =>{
       let dataValidation = {}
         if(!input_data.recipename){
-          dataValidation.recipename = "RecipeName is required"
+          dataValidation.recipename = "Recipe name is required"
         }
         if(!input_data.ingredients){
           dataValidation.ingredients = "Ingredients is required"

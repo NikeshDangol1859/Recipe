@@ -52,7 +52,7 @@ function Home() {
         </div>
         {/* Showing the image and add Recipe if there is no data in json */}
         {title.length === 0 && (
-          <div className='justify-item-center' style={{marginTop:'180px'}}>
+          <div className='justify-item-center'>
             <div className="image-receipe">
               <img src="/file.png" alt="No Recipe Available" />
             </div>
@@ -62,6 +62,7 @@ function Home() {
              </button>
            </div>
            </div>
+          
           )}
 
          
