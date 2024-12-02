@@ -24,11 +24,11 @@
     margin-top: 20px;
   }
   .inputs .ingredients-recipe{
-    width: 50%;
+    width: 100%;
     margin-right: 10px;
   }
   .inputs .description-recipe{
-    width: 50%;
+    width: 100%;
     margin-left: 10px;
   }
 
@@ -118,7 +118,7 @@ margin-top: 15px;
 .container-detail{
     width: 100%;
     height: 100%;
-    justify-content: center;  /* Center horizontally */
+    justify-content: center;  
     align-items: center;
   }
   
@@ -136,8 +136,8 @@ margin-top: 15px;
   .container-detail .detail-image img {
     /* width: 50%; 
     height: auto;  */
-    max-width: 70%;   /* Adjust for responsiveness */
-    height: auto;     /* Maintain aspect ratio */
+    max-width: 70%;   
+    height: auto;     
     object-fit: contain;
   }
 
@@ -174,7 +174,7 @@ margin-top: 15px;
     width: 100%;
     height: auto;
     border: none;
-    margin-bottom: 20px;  /* Add some space between containers */
+    margin-bottom: 20px;  
   }
 
   .container-receipe .main-receipe .head {
@@ -187,17 +187,14 @@ margin-top: 15px;
     margin: 5px 0;
   }
 
-  /* Adjust button sizes */
   .btns {
     font-size: 14px;
   }
 
-  /* Center images */
   .container-detail .detail-image img {
-    width: 70%;  /* Adjust image size */
+    width: 70%;  
   }
 
-  /* Adjust text */
   .detail-container .detail-main .detail-header h3 {
     font-size: 18px;
   }
@@ -208,7 +205,6 @@ margin-top: 15px;
 }
 
 @media (max-width: 480px) {
-  /* Further reduce padding and font sizes */
   .home-container .main .recipe-container .head h5 {
     font-size: 16px;
   }
@@ -219,7 +215,7 @@ margin-top: 15px;
   }
 
   .container-detail .detail-image img {
-    width: 80%;  /* Smaller image on very small screens */
+    width: 80%; 
   }
 }
 
@@ -228,70 +224,69 @@ margin-top: 15px;
 
 
 .modal-content {
-  border-radius: 5px;  /* Maintain your rounded-0 class */
+  border-radius: 5px;  
 }
 
 .container {
-  padding: 20px;  /* Default padding */
+  padding: 20px;  
 }
 
-/* Form Inputs */
 .inputs {
   display: flex;
-  flex-direction: row;  /* Default horizontal layout */
-  gap: 10px;  /* Add space between fields */
+  flex-direction: row;  
+  gap: 10px;  
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
   .modal-dialog {
-    max-width: 90%;  /* Increase modal width for better utilization */
-    margin: 10px auto;  /* Center modal */
+    max-width: 90%;  
+    margin: 10px auto;  
   }
 
   .container {
-    padding: 10px;  /* Reduce padding */
+    padding: 10px;  
   }
 
   .inputs {
-    flex-direction: column;  /* Stack fields vertically */
+    flex-direction: column;
+    width: 100%;  
   }
 
   .ingredients-recipe,
   .description-recipe {
-    width: 100%;  /* Full width for both fields */
-    margin: 0;  /* Remove side margins */
+    width: 100%;  
+    margin: 0;  
   }
 
   .form-label {
-    font-size: 14px;  /* Adjust label size for smaller screens */
+    font-size: 14px;  
   }
 
   textarea,
   input[type="text"] {
-    font-size: 14px;  /* Ensure input text is readable */
+    font-size: 14px;
   }
 
   .modal-footer {
-    flex-direction: column;  /* Stack buttons vertically */
-    gap: 10px;  /* Add space between buttons */
+    flex-direction: column; 
+    gap: 10px;  
   }
 
   .modal-footer button {
-    width: 100%;  /* Full-width buttons for easier access */
+    width: 100%;  
   }
 }
 
 @media (max-width: 480px) {
   .modal-dialog {
-    max-width: 95%;  /* Even wider modal on very small screens */
+    max-width: 95%;  
   }
 
   .modal-header .modal-title {
-    font-size: 16px;  /* Adjust title font size */
+    font-size: 16px;  
   }
 
   .form-control {
-    font-size: 12px;  /* Smaller font in form controls */
+    font-size: 12px;  
   }
 }

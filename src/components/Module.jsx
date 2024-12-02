@@ -57,7 +57,7 @@ function Module(props) {
         if(Object.keys(dataValidation).length==0)
           {
 
-        if (props.getedit == "") {            
+        if (props.getedit && props.getedit.id) {            
             axios.put(`http://localhost:3030/recipe/${props.getedit.id}`, input_data)
               .then(() => {
                 props.getallreceipe(); 
@@ -73,6 +73,23 @@ function Module(props) {
               })
               .catch((error) => alert(error));
           }
+            // if (props.getedit == "") {            
+            //   axios.post(`http://localhost:3030/recipe`, input_data)
+            //   .then(() => {
+            //     props.getallreceipe(); 
+            //     props.onClose();        
+            //   })
+            //   .catch((error) => alert(error));
+            // } else {
+
+            // axios.put(`http://localhost:3030/recipe/${props.getedit.id}`, input_data)
+            //   .then(() => {
+            //     props.getallreceipe();  
+            //     props.onClose();        
+            //   })
+            //   .catch((error) => alert(error));
+            // }
+
         }
       
     }
